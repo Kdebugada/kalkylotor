@@ -11,44 +11,73 @@
     <div class="container">
         <h1>Калькулятор систем счисления</h1>
         
-        <div class="input-container">
-            <input type="text" id="numberInput" placeholder="Введите число">
-            
-            <div class="base-select">
-                <label for="fromBase">Из системы:</label>
-                <select id="fromBase">
-                    <option value="2">Двоичная (2)</option>
-                    <option value="8">Восьмеричная (8)</option>
-                    <option value="10" selected>Десятичная (10)</option>
-                    <option value="16">Шестнадцатеричная (16)</option>
-                    <option value="custom">Другая...</option>
-                </select>
-                <input type="number" id="customFromBase" placeholder="Основание" min="2" max="36" class="hidden">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="converter">Конвертер</button>
+            <button class="tab-btn" data-tab="favorites">Избранное</button>
+        </div>
+        
+        <div class="tab-content active" id="converter-tab">
+            <div class="input-container">
+                <div class="number-input-container">
+                    <input type="text" id="numberInput" placeholder="Введите число">
+                    <label class="negative-checkbox">
+                        <input type="checkbox" id="negativeCheckbox">
+                        <span>−</span>
+                    </label>
+                </div>
+                
+                <div class="base-select">
+                    <label for="fromBase">Из системы:</label>
+                    <select id="fromBase">
+                        <option value="2">Двоичная (2)</option>
+                        <option value="8">Восьмеричная (8)</option>
+                        <option value="10" selected>Десятичная (10)</option>
+                        <option value="16">Шестнадцатеричная (16)</option>
+                        <option value="custom">Другая...</option>
+                    </select>
+                    <input type="number" id="customFromBase" placeholder="Основание" min="2" max="36" class="hidden">
+                </div>
+                
+                <div class="base-select">
+                    <label for="toBase">В систему:</label>
+                    <select id="toBase">
+                        <option value="2">Двоичная (2)</option>
+                        <option value="8">Восьмеричная (8)</option>
+                        <option value="10">Десятичная (10)</option>
+                        <option value="16" selected>Шестнадцатеричная (16)</option>
+                        <option value="custom">Другая...</option>
+                    </select>
+                    <input type="number" id="customToBase" placeholder="Основание" min="2" max="36" class="hidden">
+                </div>
+                
+                <div class="precision-control">
+                    <label for="precisionInput">Точность дробной части:</label>
+                    <input type="number" id="precisionInput" min="0" max="20" value="10">
+                </div>
             </div>
             
-            <div class="base-select">
-                <label for="toBase">В систему:</label>
-                <select id="toBase">
-                    <option value="2">Двоичная (2)</option>
-                    <option value="8">Восьмеричная (8)</option>
-                    <option value="10">Десятичная (10)</option>
-                    <option value="16" selected>Шестнадцатеричная (16)</option>
-                    <option value="custom">Другая...</option>
-                </select>
-                <input type="number" id="customToBase" placeholder="Основание" min="2" max="36" class="hidden">
+            <div class="button-container">
+                <button id="convertBtn">Конвертировать</button>
+                <button id="favoriteBtn" class="outline-btn">В избранное</button>
+            </div>
+            
+            <div class="result-container">
+                <h2>Результат:</h2>
+                <div id="result">-</div>
+                <button id="showStepsBtn" class="hidden">Показать шаги конвертации</button>
+            </div>
+            
+            <div id="stepsContainer" class="steps-container hidden"></div>
+            
+            <div class="history-container">
+                <h2>История конвертаций:</h2>
+                <ul id="history"></ul>
             </div>
         </div>
         
-        <button id="convertBtn">Конвертировать</button>
-        
-        <div class="result-container">
-            <h2>Результат:</h2>
-            <div id="result">-</div>
-        </div>
-        
-        <div class="history-container">
-            <h2>История конвертаций:</h2>
-            <ul id="history"></ul>
+        <div class="tab-content" id="favorites-tab">
+            <h2>Избранные конвертации:</h2>
+            <ul id="favorites"></ul>
         </div>
     </div>
     
